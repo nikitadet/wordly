@@ -1,2 +1,2 @@
 $ pip install colorama
-установка библиотеки COLORAMA
+установка библиотеки Colorama
