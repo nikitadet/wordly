@@ -7,16 +7,38 @@ colorama.init()
 words = open("slova5bykvwordly", "r", encoding='utf-8').read().split("\n")
 randomslowo = random.choice(words)
 
-
 def solo ():
-     for i in range(5):
+    while True:
+        print("вы играте solo или duo?")
+        igr = input()
+        if igr == "solo" or igr == "duo":
+            break
+        else:
+            print("если хотите играть один, пишите solo, если c другом, то duo")
+        continue
+    if igr == "duo" and len(igr) <= 5:
+        print("введите слово которое хотите загадать, оно должно быть длиной 5 букв")
+        slovo = input()
+        if slovo in words:
+            randomslowo = slovo
+        else:
+            print("такого слова не существует")
+            return
+    print("введите слово:")
+    for i in range(5, 0, -1):
+        print(Style.RESET_ALL + f" осталось попыток: {i}")
         a = input()
+        if a not in words:
+            print("этого слова не существует")
+            break
         if len(a) > 5:
             print("слово длинее 5 букв")
             break
         if a == randomslowo:
-            print("вы угадали слово, потребовалось попыток:" + i)
+            print(f"вы угадали слово, потребовалось попыток: {i}")
+            return
         for k in range(5):
+            Style.RESET_ALL
             if a[k] in randomslowo:
                 b = randomslowo.find(a[k])
                 if k == b:
@@ -26,20 +48,19 @@ def solo ():
                     print(Back.YELLOW + a[k], end="")
             else:
                 print(Style.RESET_ALL + a[k], end="")
-def duo ():
-     print("duo")
+    print(Style.RESET_ALL + ", к большому сожалению вы не отгадали слово, загаданное слово:", randomslowo)
 
-print("вы играете solo или duo")
+
+
+print("готовы играть?")
 while True:
     play = input()
-    if play == "solo" or play == "duo":
-            if play == "solo":
+    if play == "yes":
+            if play == "yes":
                  solo()
-            else:
-                 duo()
             break
     else:
-        print("если играете один то пишите solo, если вдвоем, то duo")
+        print("если хотите играть скажите yes")
         continue
 
 
