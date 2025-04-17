@@ -7,7 +7,8 @@ colorama.init()
 words = open("slova5bykvwordly", "r", encoding='utf-8').read().split("\n")
 randomslowo = random.choice(words)
 
-def solo ():
+def game ():
+    global randomslowo
     while True:
         print("вы играте solo или duo?")
         igr = input()
@@ -30,7 +31,8 @@ def solo ():
         a = input()
         if a not in words:
             print("этого слова не существует")
-            break
+            Style.RESET_ALL
+            return
         if len(a) > 5:
             print("слово длинее 5 букв")
             break
@@ -57,7 +59,7 @@ while True:
     play = input()
     if play == "yes":
             if play == "yes":
-                 solo()
+                game()
             break
     else:
         print("если хотите играть скажите yes")
